@@ -1,7 +1,6 @@
 var path = require('path');
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
-var indexRouter = require('./routes/index');
 
 const app = express()
 
@@ -13,6 +12,13 @@ app.engine("hbs", expressHandlebars({
 }))
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', indexRouter);
+
+app.get('/', function (req, res) {
+    res.render('home')
+})
+
+app.get('/about', function (req, res) {
+    res.render('about')
+})
 
 app.listen(3000)
