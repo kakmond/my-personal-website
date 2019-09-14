@@ -18,7 +18,7 @@
       <a class="navbar-brand font-weight-bold lead text-monospace" style="font-size: 23px" href="/">Mond</a>
     </div>
     <div class="navbar-nav pr-5">
-      <a class="nav-item nav-link font-weight-bold active" href="/">HOME</a>
+      <a class="nav-item nav-link font-weight-bold" href="/">HOME</a>
       <a class="nav-item nav-link font-weight-bold" href="/portfolio">PORTFOLIO</a>
       <a class="nav-item nav-link font-weight-bold" href="/blogposts">BLOGPOSTS</a>
       <li class="nav-item dropdown">
@@ -27,7 +27,7 @@
           ABOUT ME
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="nav-item nav-link font-weight-bold text-dark" href="/aboutMe">ABOUT ME</a>
+          <a class="nav-item nav-link font-weight-bold text-dark" href="/about">ABOUT ME</a>
           <a class="nav-item nav-link font-weight-bold text-dark" href="/contact">CONTACT ME</a>
           <a class="nav-item nav-link font-weight-bold text-dark" href="/faq">FAQ</a>
         </div>
@@ -36,3 +36,15 @@
     </div>
   </nav>
 </header>
+
+<script>
+  $(document).ready(function () {
+    // get current URL path and assign 'active' class
+    var pathName = window.location.pathname;
+    if (pathName == '/about' || pathName == '/contact' || pathName == '/faq')
+      $('li[class="nav-item dropdown"]').addClass('show');
+    else
+      $('a[href="' + pathName + '"]').addClass('active');
+  })
+
+</script>
