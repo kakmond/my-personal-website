@@ -1,0 +1,54 @@
+<div class="px-4" style="background-color: white">
+    <div class="pt-4">
+        <div class="text-center">
+            <h1 class="display-4 lead text-monospace">Ask Me a Question</h1>
+            <p class="text-monospace lead text-muted">
+                Please feel free to contact me if you need any further information about me.
+            </p>
+        </div>
+        <form method="POST">
+            <div class="text-monospace lead">
+                <div class="input-group input-group-lg mb-3">
+                    <input type="text" id="question" class="form-control" placeholder="Ask me anything"
+                        aria-describedby="button-addon">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" type="submit" id="button-addon">
+                            Ask
+                            <i class="fas fa-question-circle fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <hr class="my-4 bg-danger">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between" id="headingOne">
+                    <div class="d-flex align-items-center">
+                        <i class="fab fa-3x text-danger fa-quora"></i>
+                        <button class="btn btn-link pl-3" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <span class="text-monospace lead text-dark font-weight-bold">
+                                What is your name?
+                            </span>
+                        </button>
+                    </div>
+                    <a href="/faqs/2" class="btn btn-outline-primary">
+                        <i class="fas fa-lg fa-edit align-bottom"></i>
+                    </a>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body d-flex align-items-center text-muted">
+                        <i class="fab fa-3x fa-amilia"></i>
+                        <span class="pl-4 text-monospace lead">
+                            My name is Mond
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
