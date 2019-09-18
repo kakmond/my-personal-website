@@ -29,7 +29,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="nav-item nav-link font-weight-bold text-dark" href="/about">ABOUT ME</a>
           <a class="nav-item nav-link font-weight-bold text-dark" href="/contact">CONTACT ME</a>
-          <a class="nav-item nav-link font-weight-bold text-dark" href="/faq">FAQ</a>
+          <a class="nav-item nav-link font-weight-bold text-dark" href="/faqs">FAQS</a>
         </div>
       </li>
       <a class="nav-item nav-link font-weight-bold" href="/login">LOGIN</a>
@@ -41,7 +41,7 @@
   $(document).ready(function () {
     // get current URL path and assign 'active' class
     var pathName = window.location.pathname;
-    if (pathName == '/about' || pathName == '/contact' || pathName == '/faq')
+    if (pathName == '/about' || pathName == '/contact' || pathName == '/faqs')
       $('li[class="nav-item dropdown"]').addClass('show');
     else
       $('a[href="' + pathName + '"]').addClass('active');
