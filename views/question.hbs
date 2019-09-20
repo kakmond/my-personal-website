@@ -1,16 +1,17 @@
+{{#if question}}
 <div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <div class="d-flex align-items-center">
                 <i class="fab fa-3x text-danger fa-quora"></i>
                 <span class="pl-3 text-monospace lead text-dark font-weight-bold">
-                    What is your name?
+                    {{question.question}}
                 </span>
             </div>
             <div class="pr-2">
                 <form method="POST">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button formaction="/faq/2" type="submit" class="btn btn-outline-danger">
+                    <button type="submit" class="btn btn-outline-danger">
                         <i class="fas fa-lg fa-trash-alt"></i>
                         <span class="text-monospace lead pl-2">Delete</span>
                     </button>
@@ -24,11 +25,11 @@
                     <i class="p-2 bd-highlight fab fa-3x fa-amilia"></i>
                     <div class="p-2 flex-grow-1 bd-highlight pl-3">
                         <input class="form-control form-control-lg text-monospace lead" name="answer" type="text"
-                            value="Test">
+                            value="{{question.answer}}" placeholder="No answer">
                     </div>
                 </div>
                 <div class="text-right pt-2 pr-2">
-                    <button formaction="/faq/2" type="submit" class="btn btn-outline-success">
+                    <button type="submit" class="btn btn-outline-success">
                         <i class="fas fa-lg fa-edit"></i>
                         <span class="text-monospace lead pl-2">Update</span>
                     </button>
@@ -38,3 +39,14 @@
 
     </div>
 </div>
+{{else}}
+<div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="container text-monospace text-white">
+        <div class="row">
+            <h1 class="display-4">Question not found</h1>
+            <i class="pl-4 far fa-4x fa-dizzy"></i>
+        </div>
+        <p class="lead">The question you are looking for is not available.</p>
+    </div>
+</div>
+{{/if}}
