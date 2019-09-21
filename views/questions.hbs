@@ -10,11 +10,11 @@
             <div class="lead">
                 <div class="input-group input-group-lg mb-3">
                     <input type="text" name="question" class="form-control {{#if validationErrors}}is-invalid{{/if}}"
-                        placeholder="Ask me anything" aria-describedby="button-addon" maxlength="100">
+                        placeholder="Search..." aria-describedby="button-addon" maxlength="100">
                     <div class="input-group-append">
                         <button class="btn btn-danger" type="submit" id="button-addon">
-                            Ask
-                            <i class="fas fa-question-circle fa-lg"></i>
+                            Search
+                            <i class="fas fa-search pl-1 fa-lg"></i>
                         </button>
                     </div>
                     <div class="invalid-feedback">
@@ -24,43 +24,49 @@
             </div>
         </form>
         <hr class="my-4 bg-danger">
-        {{#if questions.length}}
-        {{#each questions}}
-        <div class="accordion border-bottom" id="accordion{{@index}}">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between" id="heading{{@index}}">
-                    <div class="d-flex align-items-center">
-                        <i class="fab fa-3x text-danger fa-quora"></i>
-                        <button class="btn btn-link pl-3" type="button" data-toggle="collapse"
-                            data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
-                            <span class="lead text-dark font-weight-bold">
-                                {{this.question}}
-                            </span>
-                        </button>
+        <div class="shadow bg-white rounded">
+            {{#if questions.length}}
+            {{#each questions}}
+            <div class="accordion border-bottom">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-3x text-danger fa-quora"></i>
+                            <a href="/questions/{{this.id}}">
+                                <span class="pl-3 lead text-dark font-weight-bold">
+                                    {{this.question}}
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                    <a href="/questions/{{this.id}}" class="btn btn-outline-primary">
-                        <i class="fas fa-lg fa-edit align-bottom"></i>
-                    </a>
-                </div>
-                <div id="collapse{{@index}}" class="collapse" aria-labelledby="heading{{@index}}"
-                    data-parent="#accordion{{@index}}">
-                    <div class="card-body d-flex align-items-center text-muted">
-                        <i class="fab fa-3x fa-amilia"></i>
-                        <span class="pl-4 lead">
-                            {{#if this.answer}}
-                            {{this.answer}}
-                            {{else}}
-                            <small>
-                                NO ANSWER FOR NOW.
-                            </small>
-                            {{/if}}
-                        </span>
+                    <div class="collapse show">
+                        <div class="card-body d-flex align-items-center text-muted">
+                            <i class="fab fa-3x fa-amilia"></i>
+                            <span class="pl-4 lead">
+                                {{#if this.answer}}
+                                {{this.answer}}
+                                {{else}}
+                                <small>
+                                    NO ANSWER FOR NOW.
+                                </small>
+                                {{/if}}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        {{/each}}
-        <nav class="pt-4">
+
+        <div class="pt-4 text-right">
+            <a class="btn btn-outline-success" href="/createQuestion">
+                <span class="lead">
+                    <i class="fas fa-plus pr-2"></i>
+                    New Question
+                </span>
+            </a>
+        </div>
+        <nav>
             <ul class="pagination justify-content-center">
                 {{#paginate pagination type="previous"}}
                 <li class="page-item {{#if disabled}}disabled{{/if}}">

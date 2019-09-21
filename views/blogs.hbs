@@ -1,7 +1,7 @@
-<div class="px-4 bg-white">
+<div class="px-4 bg-white shadow rounded">
     <div class="pt-4 lead">
         <div class="text-center">
-            <h1 class="display-4">My Blogs <i class="fas text-danger fa-question-circle"></i></h1>
+            <h1 class="display-4">My Blogs <i class="fas text-danger fa-newspaper pl-1"></i></h1>
             <p class="text-muted">
                 Please feel free to contact me if you need any further information about me.
             </p>
@@ -15,7 +15,7 @@
                     <div class="input-group-append">
                         <button class="btn btn-danger" type="submit" id="button-addon">
                             Search
-                            <i class="fas fa-question-circle fa-lg"></i>
+                            <i class="fas fa-search pl-1 fa-lg"></i>
                         </button>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
     <div class="row lead">
         {{#each blogs}}
         <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card h-100">
+            <div class="card h-100 bg-white">
                 <img src="{{image}}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
