@@ -1,0 +1,34 @@
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header text-center">
+            <span style="font-size: 24px" class="pl-3 text-monospace lead text-dark font-weight-bold">
+                New Question
+                <i class="fas text-danger fa-lg fa-question-circle"></i>
+            </span>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="d-flex bd-highlight text-muted">
+                    <i class="fab pt-1 fa-3x text-danger fa-quora"></i>
+                    <div class="p-2 flex-grow-1 bd-highlight pl-3">
+                        <div class="lead input-group input-group-lg mb-3">
+                            <input
+                                class="form-control form-control-lg text-monospace {{#if validationErrors}}is-invalid{{/if}}"
+                                name="question" type="text" value="{{question}}" placeholder="Ask me anything">
+                            <div class="invalid-feedback">
+                                {{validationErrors}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right pt-2 pr-2">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fas fa-lg fa-edit"></i>
+                        <span class="text-monospace lead pl-2">Ask Now</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
