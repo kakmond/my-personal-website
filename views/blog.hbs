@@ -1,0 +1,45 @@
+{{#if blog}}
+<div class="bg-white">
+    <div class="row align-items-center">
+        <div class="col-md-6 col-sm-12">
+            <img src="{{blog.image}}" class="cover img-fluid border-right">
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <blockquote style="word-wrap: break-word;" class="container blockquote text-center">
+                <h1 class="display-4"><u>{{blog.title}}</u></h1>
+                <footer class="blockquote-footer">
+                    {{blog.caption}}
+                    <br>
+                    <span>
+                        <i class="far fa-calendar-alt"></i>
+                        {{timestampToDate blog.timestamp}}
+                    </span>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    <div class="bg-dark py-5 text-white">
+        <div style="word-wrap: break-word;" class="container">
+            <p style="white-space: pre-wrap;" class="lead" style="font-size: 22px">{{blog.content}}</p>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="container text-monospace text-white">
+        <div class="row">
+            <h1 class="display-4">Blog not found</h1>
+            <i class="pl-4 far fa-4x fa-dizzy"></i>
+        </div>
+        <p class="lead">The blog you are looking for is not available.</p>
+    </div>
+</div>
+{{/if}}
+
+<style>
+    .cover {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+</style>
