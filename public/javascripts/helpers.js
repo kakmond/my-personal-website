@@ -1,10 +1,18 @@
 module.exports = {
-    timestampToDate: function (timestamp) {
-        let date = new Date(timestamp);
-        let day = date.getDate();
-        let month = date.toLocaleString('default', { month: 'long' })
-        let year = date.getFullYear();
-        let formattedDate = month + ' ' + day + ', ' + year
+    timestampToDateString: function (timestamp) {
+        const date = new Date(timestamp)
+        const day = date.getDate()
+        const month = date.toLocaleString('default', { month: 'long' })
+        const year = date.getFullYear()
+        const formattedDate = month + ' ' + day + ', ' + year
+        return formattedDate
+    },
+    timestampToDateInputValue: function (timestamp) {
+        const date = new Date(timestamp)
+        const year = date.getFullYear()
+        const month = ("0" + (date.getMonth() + 1)).substr(-2)
+        const day = ("0" + date.getDate()).substr(-2)
+        const formattedDate = year + "-" + month + "-" + day
         return formattedDate
     },
     ifCond: function (v1, operator, v2, options) {
