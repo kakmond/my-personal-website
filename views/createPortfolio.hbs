@@ -1,0 +1,85 @@
+<div class="bg-white rounded shadow lead">
+    <div class="pt-4 px-4">
+        {{#if validationErrors.length}}
+        {{#each validationErrors}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>
+                {{this}}
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{/each}}
+        {{/if}}
+
+        <div class="text-center">
+            <h1 class="display-4 ">Create Portfolio <i class="text-danger far fa-newspaper pl-2"></i></h1>
+            <p class="text-muted">
+                Please feel free to contact me if you need any further information about me.
+            </p>
+        </div>
+        <hr class="my-4 bg-danger">
+    </div>
+    <form enctype="multipart/form-data" method="POST">
+        <div class="container">
+            <div class="form-group row">
+                <label for="inputTitle" class="col-md-2 col-sm-12 col-form-label col-form-label-lg">
+                    Project's name
+                </label>
+                <div class="col-md-10 col-sm-12">
+                    <input type="text" name="title" class="form-control form-control-lg" id="inputTitle"
+                        placeholder="Input title here..." maxlength="50" value="{{title}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputGroupFile01" class="col-md-1 col-sm-12 col-form-label col-form-label-lg">
+                    Image
+                </label>
+                <div class="custom-file col-md-11 col-sm-12">
+                    <input accept="image/*" name="image" type="file" class="custom-file-input" id="inputGroupFile01"
+                        onchange="$(this).next().after().text($(this).val().split('\\').slice(-1)[0])">
+                    <label class="custom-file-label text-muted" for="inputGroupFile01">
+                        Click here to browse file...
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputCaption">
+                    Caption
+                    <br>
+                    <small class="text-muted">
+                        Please feel free to contact me if you need any further information
+                        about me.
+                    </small>
+                </label>
+                <input name="caption" class="form-control form-control-lg" id="inputCaption" rows="2"
+                    placeholder="Write your caption here..." maxlength="75" value="{{caption}}"></input>
+            </div>
+            <hr class="mt-4">
+            <div class="form-group">
+                <label for="inputDescription">
+                    Project's description
+                    <br>
+                    <small class="text-muted">
+                        Please feel free to contact me if you need any further information
+                        about me.
+                    </small>
+                </label>
+                <textarea name="description" class="form-control form-control-lg" id="inputDescription" rows="7"
+                    placeholder="Write your content here..." maxlength="500">{{description}}</textarea>
+            </div>
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="fromDate">Project's date</span>
+                </div>
+                <input value="{{date}}" name="date" type="date" class="form-control" aria-describedby="fromDate">
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-outline-success btn-lg my-4">
+                    <i class="fas fa-plus pr-2"></i>Create Now
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

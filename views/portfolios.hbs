@@ -1,0 +1,64 @@
+<div class="px-4 lead bg-white shadow rounded">
+    <div class="pt-4">
+        <div class="text-center">
+            <h1 class="display-4">Portfolio<i class="fas text-danger fa-newspaper pl-1"></i></h1>
+            <p class="text-muted">
+                Please feel free to contact me if you need any further information about me.
+            </p>
+        </div>
+        <hr class="my-4 bg-danger">
+    </div>
+
+    {{#if portfolios.length}}
+    <div class="row">
+        {{#each portfolios}}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow h-100">
+                <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <blockquote class="card-text blockquote text-center">
+                        <span class="font-weight-bold" style="font-size: 22px">{{this.title}}</span>
+                        <footer class="blockquote-footer">
+                            <cite>{{this.caption}}</cite>
+                        </footer>
+                    </blockquote>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <small class="text-muted">
+                            <i class="far fa-calendar-alt"></i>
+                            {{timestampToDateString this.timestamp}}
+                        </small>
+                        <a class="btn btn-outline-danger" href="/portfolios/{{this.id}}">
+                            <i class="fas fa-code"></i>
+                            <span class="pl-2">See more</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <nav class="pb-2">
+        <ul class="pagination justify-content-center">
+            {{#paginate pagination type="previous"}}
+            <li class="page-item {{#if disabled}}disabled{{/if}}">
+                <a class="page-link" href="?page={{n}}">Previous</a>
+            </li>
+            {{/paginate}}
+            {{#paginate pagination type="middle" limit="5"}}
+            <li class="page-item {{#if active}}active{{/if}}"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+            {{/paginate}}
+            {{#paginate pagination type="next"}}
+            <li class="page-item {{#if disabled}}disabled{{/if}}"><a class="page-link" href="?page={{n}}">Next</a>
+            </li>
+            {{/paginate}}
+        </ul>
+    </nav>
+    {{else}}
+    <div class="pb-4 text-center">
+        <span class="lead text-muted">
+            NO WORK :(
+        </span>
+    </div>
+    {{/if}}
+</div>

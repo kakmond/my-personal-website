@@ -1,0 +1,51 @@
+{{#if portfolio}}
+<div class="shadow-lg bg-white rounded p-5">
+    <div class="row align-items-center lead">
+        <div class="col-md-6 col-sm-12">
+            <div style="word-wrap: break-word;">
+                <blockquote class="blockquote text-center">
+                    <h1 class="text-danger">{{portfolio.title}}</h1>
+                    <footer class="blockquote-footer">
+                        <cite style="font-size: 20px">{{portfolio.caption}}</cite>
+                    </footer>
+                    <small class="text-muted">
+                        <i class="far fa-calendar-alt"></i>
+                        {{timestampToDateString portfolio.timestamp}}
+                    </small>
+                </blockquote>
+                <hr>
+                <span style="white-space: pre-wrap;" style="font-size: 22px">
+                    {{portfolio.description}}
+                </span>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <img src="{{portfolio.image}}" class="cover img-fluid">
+            <div class="pt-4 text-center">
+                <a class="btn btn-lg btn-outline-primary" href="/editPortfolio/{{portfolio.id}}">
+                    <i class="fas fa-lg fa-edit"></i>
+                    <span class="pl-2">Edit</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="container text-monospace text-white">
+        <div class="row">
+            <h1 class="display-4">Portfolio not found</h1>
+            <i class="pl-4 far fa-4x fa-dizzy"></i>
+        </div>
+        <p class="lead">The portfolio you are looking for is not available.</p>
+    </div>
+</div>
+{{/if}}
+
+<style>
+    .cover {
+        width: 100%;
+        max-height: 600px;
+        object-fit: cover;
+    }
+</style>
