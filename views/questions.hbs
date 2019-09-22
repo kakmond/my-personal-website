@@ -1,4 +1,4 @@
-<div class="px-4" style="background-color: white">
+<div class="px-4 bg-white">
     <div class="py-4">
         <div class="text-center">
             <h1 class="display-4 lead ">Ask Me a Question <i class="fas text-danger fa-question-circle"></i></h1>
@@ -24,40 +24,44 @@
             </div>
         </form>
         <hr class="my-4 bg-danger">
-        <div class="shadow bg-white rounded">
-            {{#if questions.length}}
-            {{#each questions}}
-            <div class="accordion border-bottom">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <i class="fab fa-3x text-danger fa-quora"></i>
-                            <a href="/questions/{{this.id}}">
-                                <span class="pl-3 lead text-dark font-weight-bold">
-                                    {{this.question}}
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="collapse show">
-                        <div class="card-body d-flex align-items-center text-muted">
-                            <i class="fab fa-3x fa-amilia"></i>
-                            <span class="pl-4 lead">
-                                {{#if this.answer}}
-                                {{this.answer}}
-                                {{else}}
-                                <small>
-                                    NO ANSWER FOR NOW.
-                                </small>
-                                {{/if}}
+        {{#if questions.length}}
+        {{#each questions}}
+        <div class="accordion shadow bg-white rounded border-bottom">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <i class="fab fa-3x text-danger fa-quora"></i>
+                        <a href="/questions/{{this.id}}">
+                            <span class="pl-3 lead text-dark font-weight-bold">
+                                {{this.question}}
                             </span>
-                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="collapse show">
+                    <div class="card-body d-flex align-items-center text-muted">
+                        <i class="fab fa-3x fa-amilia"></i>
+                        <span class="pl-4 lead">
+                            {{#if this.answer}}
+                            {{this.answer}}
+                            {{else}}
+                            <small>
+                                NO ANSWER FOR NOW.
+                            </small>
+                            {{/if}}
+                        </span>
                     </div>
                 </div>
             </div>
-            {{/each}}
         </div>
-
+        {{/each}}
+        {{else}}
+        <div class="text-center">
+            <span class="lead text-muted">
+                NO QUESTIONS :(
+            </span>
+        </div>
+        {{/if}}
         <div class="pt-4 text-right">
             <a class="btn btn-outline-success" href="/createQuestion">
                 <span class="lead">
@@ -82,12 +86,5 @@
                 {{/paginate}}
             </ul>
         </nav>
-        {{else}}
-        <div class="text-center">
-            <span class="lead text-muted">
-                NO QUESTIONS :(
-            </span>
-        </div>
-        {{/if}}
     </div>
 </div>
