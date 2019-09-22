@@ -70,6 +70,7 @@
                 </span>
             </a>
         </div>
+        {{#if questions.length}}
         <nav>
             <ul class="pagination justify-content-center">
                 {{#paginate pagination type="previous"}}
@@ -86,5 +87,6 @@
                 {{/paginate}}
             </ul>
         </nav>
+        {{/if}}
     </div>
 </div>

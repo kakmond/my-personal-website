@@ -26,6 +26,8 @@ const PORTFOLIO_PER_PAGE = 3
 // constants used for validation of resources.
 const QUESTION_MIN_LENGTH = 5
 const QUESTION_MAX_LENGTH = 100
+const ANSWER_MIN_LENGTH = 5
+const ANSWER_MAX_LENGTH = 75
 const TITLE_MIN_LENGTH = 5
 const TITLE_MAX_LENGTH = 50
 const CAPTION_MIN_LENGTH = 20
@@ -126,19 +128,50 @@ app.post('/createQuestion/', function (req, res) {
         })
 })
 
-app.put('/questions/:id', function (req, res) {
+app.get('/answerQuestion/:id', function (req, res) {
     const id = req.params.id
-    const answer = req.body.answer
-
-    db.updateAnswerById(id, answer, function (error, questionExisted) {
-        if (error || !questionExisted)
+    db.getQuestionById(id, function (error, question) {
+        if (error)
             res.render('error')
         else
-            res.redirect("/questions/" + id)
+            res.render('answerQuestion', {
+                question
+            })
     })
 })
 
-app.delete('/questions/:id', function (req, res) {
+app.post('/answerQuestion/:id', function (req, res) {
+    const validationErrors = []
+    const id = req.params.id
+    const answer = req.body.answer
+
+    if (answer.length < ANSWER_MIN_LENGTH)
+        validationErrors.push("Answer is too short!")
+    else if (answer.length > ANSWER_MAX_LENGTH)
+        validationErrors.push("Answer is too long!")
+
+    if (validationErrors.length == 0) {
+        db.updateAnswerById(id, answer, function (error, questionExisted) {
+            if (error || !questionExisted)
+                res.render('error')
+            else
+                res.redirect("/questions/" + id)
+        })
+    }
+    else {
+        const question = {
+            id,
+            question: req.body.question,
+            answer
+        }
+        res.render("answerQuestion", {
+            validationErrors,
+            question,
+        })
+    }
+})
+
+app.post('/deleteQuestion/:id', function (req, res) {
     const id = req.params.id
 
     db.deleteQuestionById(id, function (error, questionExisted) {

@@ -1,0 +1,53 @@
+{{#if question}}
+<div class="accordion shadow" id="accordionExample">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="fab fa-3x text-danger fa-quora"></i>
+                <span class="pl-3 lead text-dark font-weight-bold">
+                    {{question.question}}
+                </span>
+            </div>
+            <div class="pr-2">
+                <form method="POST" action="/deleteQuestion/{{question.id}}">
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="fas fa-lg fa-trash-alt"></i>
+                        <span class="lead pl-2">Delete</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/answerQuestion/{{question.id}}">
+                <input type="hidden" name="question" value="{{question.question}}">
+                <div class="d-flex bd-highlight text-muted">
+                    <i class="p-2 bd-highlight fab fa-3x fa-amilia"></i>
+                    <div class="p-2 flex-grow-1 bd-highlight pl-3">
+                        <input class="form-control form-control-lg lead {{#if validationErrors}}is-invalid{{/if}}"
+                            name="answer" type="text" value="{{question.answer}}" placeholder="No answer">
+                        <div class="invalid-feedback">
+                            {{validationErrors}}
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right pt-2 pr-2">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fas fa-lg fa-edit"></i>
+                        <span class="lead pl-2">Update</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="container text-white">
+        <div class="row">
+            <h1 class="display-4">Question not found</h1>
+            <i class="pl-4 far fa-4x fa-dizzy"></i>
+        </div>
+        <p class="lead">The question you are looking for is not available.</p>
+    </div>
+</div>
+{{/if}}
