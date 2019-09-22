@@ -273,6 +273,7 @@ app.post('/editBlog/:id', upload.single('image'), function (req, res) {
         validationErrors.push("Content is too long.")
 
     const blog = {
+        id,
         title,
         image: file ? file.path.replace(/^public/, '') : originalFile,
         caption,
@@ -370,6 +371,7 @@ app.post('/editPortfolio/:id', upload.single('image'), function (req, res) {
         validationErrors.push("Description is too long.")
 
     const portfolio = {
+        id,
         title,
         image: file ? file.path.replace(/^public/, '') : originalFile,
         caption,
