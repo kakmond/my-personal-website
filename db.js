@@ -21,6 +21,17 @@ db.run(`
 	)
 `)
 
+db.run(`
+	CREATE TABLE IF NOT EXISTS portfolios (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		title TEXT,
+		image TEXT,
+        caption TEXT,
+        description TEXT,
+		timestamp INTEGER
+	)
+`)
+
 exports.getAllQuestions = function (callback) {
     const query = `SELECT * FROM questions ORDER BY id DESC`
     db.all(query, function (error, questions) {
@@ -71,18 +82,19 @@ exports.updateAnswerById = function (id, updatedAnswer, callback) {
     })
 }
 
+// Blogs
 exports.getAllBlogs = function (callback) {
     const query = `SELECT * FROM blogs ORDER BY id DESC`
-    db.all(query, function (error, questions) {
-        callback(error, questions)
+    db.all(query, function (error, blogs) {
+        callback(error, blogs)
     })
 }
 
 exports.getBlogById = function (id, callback) {
     const query = `SELECT * FROM blogs WHERE id = ?`
     const values = [id]
-    db.get(query, values, function (error, question) {
-        callback(error, question)
+    db.get(query, values, function (error, blog) {
+        callback(error, blog)
     })
 }
 
@@ -120,19 +132,88 @@ exports.updateBlogById = function (id, updatedBlog, callback) {
         title = ?,
         image = ?,
         caption = ?,
-        content = ?,
+        content = ?
     WHERE
         id = ?
     `
     const values = [
-        blog.title,
-        blog.image,
-        blog.caption,
-        blog.content,
+        updatedBlog.title,
+        updatedBlog.image,
+        updatedBlog.caption,
+        updatedBlog.content,
         id
     ]
     db.run(query, values, function (error) {
         const blogExisted = (this.changes == 1)
         callback(error, blogExisted)
+    })
+}
+
+// Portfolio
+exports.getAllPortfolios = function (callback) {
+    const query = `SELECT * FROM portfolios ORDER BY id DESC`
+    db.all(query, function (error, portfolios) {
+        callback(error, portfolios)
+    })
+}
+
+exports.getPortfolioById = function (id, callback) {
+    const query = `SELECT * FROM portfolios WHERE id = ?`
+    const values = [id]
+    db.get(query, values, function (error, portfolio) {
+        callback(error, portfolio)
+    })
+}
+
+exports.createPortfolio = function (blog, callback) {
+    const query = `
+    INSERT INTO portfolios
+        (title, image, caption, description, timestamp) 
+    VALUES 
+        (?, ?, ?, ?, ?)`
+    const values = [
+        blog.title,
+        blog.image,
+        blog.caption,
+        blog.description,
+        blog.timestamp
+    ]
+    db.run(query, values, function (error) {
+        const id = this.lastID
+        callback(error, id)
+    })
+}
+
+exports.deletePortfolioById = function (id, callback) {
+    const query = `DELETE FROM portfolios WHERE id = ?`
+    const values = [id]
+    db.run(query, values, function (error) {
+        const portfolioExisted = (this.changes == 1)
+        callback(error, portfolioExisted)
+    })
+}
+
+exports.updatePortfolioById = function (id, updatedPortfolio, callback) {
+    const query = `
+    UPDATE portfolios SET
+        title = ?,
+        image = ?,
+        caption = ?,
+        description = ?,
+        timestamp = ?
+    WHERE
+        id = ?
+    `
+    const values = [
+        updatedPortfolio.title,
+        updatedPortfolio.image,
+        updatedPortfolio.caption,
+        updatedPortfolio.description,
+        updatedPortfolio.timestamp,
+        id
+    ]
+    db.run(query, values, function (error) {
+        const portfolioExisted = (this.changes == 1)
+        callback(error, portfolioExisted)
     })
 }
