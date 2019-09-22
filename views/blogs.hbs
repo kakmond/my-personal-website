@@ -49,14 +49,15 @@
                     <h5 class="card-title">{{this.title}}</h5>
                     <hr>
                     <p class="card-text">{{this.caption}}</p>
-                    <a class="btn btn-outline-dark" href="/blogposts/{{this.id}}">
+                    <a class="btn btn-outline-danger" href="/blogs/{{this.id}}">
                         <i class="fas fa-code"></i>
                         <span class="pl-2">Read more</span>
                     </a>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">
-                        {{timestampToDate this.timestamp}}
+                        <i class="far fa-calendar-alt pr-1"></i>
+                        {{timestampToDateString this.timestamp}}
                     </small>
                 </div>
             </div>
