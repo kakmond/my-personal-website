@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
-const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const db = require('./db')
 const app = express()
@@ -45,18 +44,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
     extended: false
 }))
-// add a method override middleware to support PUT and DELETE in HTML form.
-app.use(methodOverride(function (req, res) {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        var method = req.body._method
-        delete req.body._method
-        return method
-    }
-}))
 
 app.get('/', function (req, res) {
     res.render('home')
-})
+})  
 
 app.get('/about', function (req, res) {
     res.render('about')
