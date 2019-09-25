@@ -7,7 +7,7 @@ const app = express()
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/upload/');
+        cb(null, './public/uploads/');
     },
     filename: function (req, file, callback) {
         callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -46,15 +46,15 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get('/', function (req, res) {
-    res.render('home')
-})  
+    res.render('homes/home')
+})
 
 app.get('/about', function (req, res) {
-    res.render('about')
+    res.render('homes/about')
 })
 
 app.get('/contact', function (req, res) {
-    res.render('contact')
+    res.render('homes/contact')
 })
 
 app.get('/questions', function (req, res) {
@@ -63,9 +63,9 @@ app.get('/questions', function (req, res) {
     const endIndex = beginIndex + QUESTION_PER_PAGE
     db.getAllQuestions(function (error, questions) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render("questions", {
+            res.render("questions/questions", {
                 questions: questions.slice(beginIndex, endIndex),
                 pagination: {
                     page: page,
@@ -79,16 +79,16 @@ app.get('/questions/:id', function (req, res) {
     const id = req.params.id
     db.getQuestionById(id, function (error, question) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('question', {
+            res.render('questions/question', {
                 question
             })
     })
 })
 
 app.get('/createQuestion/', function (req, res) {
-    res.render('createQuestion')
+    res.render('questions/createQuestion')
 })
 
 app.post('/createQuestion/', function (req, res) {
@@ -107,13 +107,13 @@ app.post('/createQuestion/', function (req, res) {
         }
         db.createQuestion(questionObject, function (error, id) {
             if (error)
-                res.render('error')
+                res.render('errors/error')
             else
                 res.redirect("/questions/")
         })
     }
     else
-        res.render("createQuestion", {
+        res.render("questions/createQuestion", {
             validationErrors,
             question,
         })
@@ -123,9 +123,9 @@ app.get('/answerQuestion/:id', function (req, res) {
     const id = req.params.id
     db.getQuestionById(id, function (error, question) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('answerQuestion', {
+            res.render('questions/answerQuestion', {
                 question
             })
     })
@@ -144,7 +144,7 @@ app.post('/answerQuestion/:id', function (req, res) {
     if (validationErrors.length == 0) {
         db.updateAnswerById(id, answer, function (error, questionExisted) {
             if (error || !questionExisted)
-                res.render('error')
+                res.render('errors/error')
             else
                 res.redirect("/questions/" + id)
         })
@@ -155,7 +155,7 @@ app.post('/answerQuestion/:id', function (req, res) {
             question: req.body.question,
             answer
         }
-        res.render("answerQuestion", {
+        res.render("questions/answerQuestion", {
             validationErrors,
             question,
         })
@@ -167,7 +167,7 @@ app.post('/deleteQuestion/:id', function (req, res) {
 
     db.deleteQuestionById(id, function (error, questionExisted) {
         if (error || !questionExisted)
-            res.render('error')
+            res.render('errors/error')
         else
             res.redirect("/questions/")
     })
@@ -180,9 +180,9 @@ app.get('/blogs', function (req, res) {
 
     db.getAllBlogs(function (error, blogs) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render("blogs", {
+            res.render("blogs/blogs", {
                 blogs: blogs.slice(beginIndex, endIndex),
                 pagination: {
                     page: page,
@@ -197,16 +197,16 @@ app.get('/blogs/:id', function (req, res) {
 
     db.getBlogById(id, function (error, blog) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('blog', {
+            res.render('blogs/blog', {
                 blog
             })
     })
 })
 
 app.get('/createBlog/', function (req, res) {
-    res.render('createBlog')
+    res.render('blogs/createBlog')
 })
 
 app.post('/createBlog', upload.single('image'), function (req, res) {
@@ -244,13 +244,13 @@ app.post('/createBlog', upload.single('image'), function (req, res) {
         }
         db.createBlog(blogObject, function (error, id) {
             if (error)
-                res.render('error')
+                res.render('errors/error')
             else
                 res.redirect("/blogs/" + id)
         })
     }
     else {
-        res.render("createBlog", {
+        res.render("blogs/createBlog", {
             validationErrors,
             title,
             caption,
@@ -264,9 +264,9 @@ app.get('/editBlog/:id', function (req, res) {
 
     db.getBlogById(id, function (error, blog) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('editBlog', {
+            res.render('blogs/editBlog', {
                 blog
             })
     })
@@ -306,7 +306,7 @@ app.post('/editBlog/:id', upload.single('image'), function (req, res) {
     if (validationErrors.length == 0)
         db.updateBlogById(id, blog, function (error, portfolioExisted) {
             if (error || !portfolioExisted)
-                res.render('error')
+                res.render('errors/error')
             else
                 res.redirect("/blogs/" + id)
         })
@@ -324,9 +324,9 @@ app.get('/portfolios/', function (req, res) {
 
     db.getAllPortfolios(function (error, portfolios) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render("portfolios", {
+            res.render("portfolios/portfolios", {
                 portfolios: portfolios.slice(beginIndex, endIndex),
                 pagination: {
                     page: page,
@@ -341,9 +341,9 @@ app.get('/portfolios/:id', function (req, res) {
 
     db.getPortfolioById(id, function (error, portfolio) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('portfolio', {
+            res.render('portfolios/portfolio', {
                 portfolio
             })
     })
@@ -355,9 +355,9 @@ app.get('/editPortfolio/:id', function (req, res) {
 
     db.getPortfolioById(id, function (error, portfolio) {
         if (error)
-            res.render('error')
+            res.render('errors/error')
         else
-            res.render('editPortfolio', {
+            res.render('portfolios/editPortfolio', {
                 portfolio,
             })
     })
@@ -406,9 +406,9 @@ app.post('/editPortfolio/:id', upload.single('image'), function (req, res) {
     if (validationErrors.length == 0) {
         db.updatePortfolioById(id, portfolio, function (error, portfolioExisted) {
             if (error || !portfolioExisted)
-                res.render('error')
+                res.render('errors/error')
             else
-                res.redirect("/portfolios/" + id)
+                res.redirect("portfolios/portfolios/" + id)
         })
     }
     else
@@ -423,7 +423,7 @@ app.post('/deleteBlog/:id', function (req, res) {
 
     db.deleteBlogById(id, function (error, blogExisted) {
         if (error || !blogExisted)
-            res.render('error')
+            res.render('errors/error')
         else
             res.redirect("/blogs/")
     })
@@ -434,14 +434,14 @@ app.post('/deletePortfolio/:id', function (req, res) {
 
     db.deletePortfolioById(id, function (error, portfolioExisted) {
         if (error || !portfolioExisted)
-            res.render('error')
+            res.render('errors/error')
         else
             res.redirect("/portfolios/")
     })
 })
 
 app.get('/createPortfolio/', function (req, res) {
-    res.render('createPortfolio')
+    res.render('portfolios/createPortfolio')
 })
 
 app.post('/createPortfolio', upload.single('image'), function (req, res) {
@@ -486,13 +486,13 @@ app.post('/createPortfolio', upload.single('image'), function (req, res) {
         }
         db.createPortfolio(portfolioObject, function (error, id) {
             if (error)
-                res.render('error')
+                res.render('errors/error')
             else
                 res.redirect("/portfolios/" + id)
         })
     }
     else
-        res.render("createPortfolio", {
+        res.render("portfolios/createPortfolio", {
             validationErrors,
             title,
             caption,
