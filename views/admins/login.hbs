@@ -1,0 +1,41 @@
+<div class="card shadow rounded mx-auto" style="width: 500px;">
+    <h5 class="bg-danger text-white text-center card-header">
+        <i class="fas fa-user-cog pr-2"></i> ADMIN LOGIN
+    </h5>
+    <div class="card-body lead">
+        <form method="POST">
+            <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="usernameIcon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="usernameIcon" id="inputUsername">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="passwordIcon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </div>
+                    <input type="password" name="password" class="form-control" placeholder="Password"
+                        aria-label="Password" aria-describedby="passwordIcon" id="inputPassword">
+                </div>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="fas fa-sign-in-alt fa-lg"></i>
+                    <span class="pl-1">
+                        Login
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
