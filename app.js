@@ -30,8 +30,8 @@ app.use(expressSession({
     store: new SQLiteStore()
 }))
 
-app.use(function (request, response, next) {
-    response.locals.isLoggedIn = request.session.isLoggedIn
+app.use(function (req, res, next) {
+    res.locals.isLoggedIn = req.session.isLoggedIn
     next()
 })
 
