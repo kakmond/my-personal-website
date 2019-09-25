@@ -33,20 +33,32 @@
         <a class="nav-item nav-link" href="/">HOME</a>
         <a class="nav-item nav-link" href="/portfolios">PORTFOLIO</a>
         <a class="nav-item nav-link" href="/blogs">BLOGPOSTS</a>
-        <a class="nav-item nav-link" href="/createBlog">CREATE NEW BLOG</a>
-        <a class="nav-item nav-link" href="/createPortfolio">CREATE NEW PORTFOLIO</a>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="" id="aboutMeDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             ABOUT ME
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu" aria-labelledby="aboutMeDropdownMenuLink">
             <a class="nav-item nav-link text-dark" href="/about">ABOUT ME</a>
             <a class="nav-item nav-link text-dark" href="/contact">CONTACT ME</a>
             <a class="nav-item nav-link text-dark" href="/questions">QUESTIONS</a>
           </div>
         </li>
+        {{#if isLoggedIn}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="adminDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            ADMIN
+          </a>
+          <div class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
+            <a class="nav-item nav-link text-dark" href="/portfolios/create">CREATE PORTFOLIO</a>
+            <a class="nav-item nav-link text-dark" href="/blogs/create">CREATE BLOG</a>
+            <a class="nav-item nav-link text-dark" href="/blogs/create">LOGOUT</a>
+          </div>
+        </li>
+        {{else}}
         <a class="nav-item nav-link" href="/login">LOGIN</a>
+        {{/if}}
       </div>
     </nav>
   </header>

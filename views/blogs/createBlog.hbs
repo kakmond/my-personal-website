@@ -1,4 +1,4 @@
-<div class="bg-white rounded lead">
+<div class="bg-white rounded shadow lead">
     <div class="pt-4 px-4">
         {{#if validationErrors.length}}
         {{#each validationErrors}}
@@ -46,13 +46,14 @@
                 <label for="inputDescription">
                     Caption
                     <br>
-                    <small class="text-muted">
+                    <small id="descriptionHelp" class="text-muted">
                         Please feel free to contact me if you need any further information
                         about me.
                     </small>
                 </label>
-                <input name="caption" class="form-control form-control-lg" id="inputDescription" rows="2"
-                    placeholder="Write your caption here..." maxlength="75" value="{{caption}}"></input>
+                <input aria-describedby="descriptionHelp" name="caption" class="form-control form-control-lg"
+                    id="inputDescription" rows="2" placeholder="Write your caption here..." maxlength="75"
+                    value="{{caption}}"></input>
             </div>
             <hr class="mt-4">
             <div class="form-group">
