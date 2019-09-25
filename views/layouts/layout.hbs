@@ -53,7 +53,9 @@
           <div class="dropdown-menu" aria-labelledby="adminDropdownMenuLink">
             <a class="nav-item nav-link text-dark" href="/portfolios/create">CREATE PORTFOLIO</a>
             <a class="nav-item nav-link text-dark" href="/blogs/create">CREATE BLOG</a>
-            <a class="nav-item nav-link text-dark" href="/blogs/create">LOGOUT</a>
+            <form action="/logout" method="post">
+              <button type="submit" class="nav-item nav-link text-dark btn font-weight-bold">LOGOUT</button>
+            </form>
           </div>
         </li>
         {{else}}

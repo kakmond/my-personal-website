@@ -43,10 +43,18 @@ router.get('/', function (req, res) {
 })
 
 router.get('/create/', function (req, res) {
-    res.render('portfolios/createPortfolio')
+    if (!res.locals.isLoggedIn)
+        res.redirect('/login')
+    else
+        res.render('portfolios/createPortfolio')
 })
 
 router.post('/create', upload.single('image'), function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const validationErrors = []
     const title = req.body.title
     const file = req.file
@@ -104,6 +112,11 @@ router.post('/create', upload.single('image'), function (req, res) {
 })
 
 router.get('/edit/:id', function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const id = req.params.id
 
     db.getPortfolioById(id, function (error, portfolio) {
@@ -117,6 +130,11 @@ router.get('/edit/:id', function (req, res) {
 })
 
 router.post('/edit/:id', upload.single('image'), function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const validationErrors = []
     const id = req.params.id
     const title = req.body.title
@@ -185,13 +203,18 @@ router.get('/:id', function (req, res) {
 })
 
 router.post('/delete/:id', function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const id = req.params.id
 
     db.deletePortfolioById(id, function (error, portfolioExisted) {
         if (error || !portfolioExisted)
             res.render('errors/error')
         else
-            res.redirect("/portfolios/")
+            res.redirect('/portfolios/')
     })
 })
 

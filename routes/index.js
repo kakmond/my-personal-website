@@ -26,9 +26,14 @@ router.post('/login', function (req, res) {
 
     if (username == USERNAME && password == PASSWORD) {
         req.session.isLoggedIn = true
-        res.redirect("/")
+        res.redirect('/')
     } else
         res.render('admins/login')
+})
+
+router.post('/logout', function (req, res) {
+    delete req.session.isLoggedIn;
+    res.redirect('/')
 })
 
 module.exports = router

@@ -61,6 +61,11 @@ router.post('/create/', function (req, res) {
 })
 
 router.get('/edit/:id', function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const id = req.params.id
     db.getQuestionById(id, function (error, question) {
         if (error)
@@ -73,6 +78,11 @@ router.get('/edit/:id', function (req, res) {
 })
 
 router.post('/edit/:id', function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const validationErrors = []
     const id = req.params.id
     const answer = req.body.answer
@@ -104,6 +114,11 @@ router.post('/edit/:id', function (req, res) {
 })
 
 router.post('/delete/:id', function (req, res) {
+    if (!res.locals.isLoggedIn) {
+        res.redirect('/login')
+        return
+    }
+
     const id = req.params.id
 
     db.deleteQuestionById(id, function (error, questionExisted) {

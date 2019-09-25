@@ -8,12 +8,14 @@
                     {{question.question}}
                 </span>
             </div>
+            {{#if isLoggedIn}}
             <div class="text-right pr-2">
                 <a href="/questions/edit/{{question.id}}" class="btn btn-outline-success">
                     <i class="fas fa-lg fa-wrench"></i>
                     <span class="lead pl-2">Edit</span>
                 </a>
             </div>
+            {{/if}}
         </div>
         <div class="card-body">
             <div class="d-flex bd-highlight text-muted">
