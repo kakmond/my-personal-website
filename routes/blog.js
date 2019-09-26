@@ -24,21 +24,62 @@ const CONTENT_MIN_LENGTH = 20
 const CONTENT_MAX_LENGTH = 500
 
 router.get('/', function (req, res) {
+    const search = req.query.search
+    const fromDate = req.query.fromDate
+    const toDate = req.query.toDate
+    const validationErrors = []
+    const fromDateObject = new Date(fromDate)
+    const toDateObject = new Date(toDate)
     const page = req.query.page || 1
     const beginIndex = (BLOG_PER_PAGE * page) - BLOG_PER_PAGE
     const endIndex = beginIndex + BLOG_PER_PAGE
 
+    if (fromDate || toDate)
+        if (fromDateObject == "Invalid Date")
+            validationErrors.push("Please input fromDate")
+        else if (toDateObject == "Invalid Date")
+            validationErrors.push("Please input toDate")
+        else if (fromDateObject > toDateObject)
+            validationErrors.push("toDate must be greater than the fromDate")
+
     db.getAllBlogs(function (error, blogs) {
         if (error)
             res.render('errors/error')
-        else
+        else {
+            if (validationErrors.length == 0) {
+                if (search)
+                    blogs = blogs.filter(function (element) {
+                        return element.title.includes(search)
+                            || element.caption.includes(search)
+                            || element.content.includes(search)
+                    })
+                if (fromDateObject != "Invalid Date")
+                    blogs = blogs.filter(function (element) {
+                        const blogDate = new Date(element.timestamp)
+                        blogDate.setUTCHours(0, 0, 0, 0) // initialize a blog date to midnight 
+                        return blogDate > fromDateObject
+                            || +blogDate === +fromDateObject
+                    })
+                if (toDateObject != "Invalid Date")
+                    blogs = blogs.filter(function (element) {
+                        const blogDate = new Date(element.timestamp)
+                        blogDate.setUTCHours(0, 0, 0, 0) // initialize a blog date to midnight 
+                        return blogDate < toDateObject
+                            || +blogDate === +toDateObject
+                    })
+            }
             res.render("blogs/blogs", {
                 blogs: blogs.slice(beginIndex, endIndex),
                 pagination: {
                     page: page,
-                    pageCount: Math.ceil(blogs.length / BLOG_PER_PAGE)
-                }
+                    pageCount: Math.ceil(blogs.length / BLOG_PER_PAGE),
+                },
+                validationErrors,
+                search,
+                toDate,
+                fromDate
             })
+        }
     })
 })
 
@@ -54,8 +95,6 @@ router.post('/create', upload.single('image'), function (req, res) {
         res.redirect('/login')
         return
     }
-
-    console.log(req.csrfToken())
 
     const validationErrors = []
     const title = req.body.title
@@ -192,7 +231,7 @@ router.post('/delete/:id', function (req, res) {
         res.redirect('/login')
         return
     }
-    
+
     const id = req.params.id
 
     db.deleteBlogById(id, function (error, blogExisted) {

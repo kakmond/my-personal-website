@@ -7,11 +7,23 @@
             </p>
         </div>
 
-        <form method="POST">
+        <form>
             <div class="lead">
+                {{#if validationErrors.length}}
+                {{#each validationErrors}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>
+                        {{this}}
+                    </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{/each}}
+                {{/if}}
                 <div class="input-group input-group-lg mb-3">
-                    <input type="text" name="question" class="form-control" placeholder="Search here..."
-                        aria-describedby="button-addon">
+                    <input type="text" value="{{search}}" name="search" class="form-control"
+                        placeholder="Search here..." aria-describedby="button-addon">
                     <div class="input-group-append">
                         <button class="btn btn-danger" type="submit" id="button-addon">
                             Search
@@ -24,16 +36,17 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="fromDate">From</span>
                         </div>
-                        <input type="date" class="form-control" aria-describedby="fromDate">
+                        <input name="fromDate" value="{{fromDate}}" type="date" class="form-control"
+                            aria-describedby="fromDate">
                     </div>
                     <div class="col-md-6 input-group input-group-lg">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="toFrom">To</span>
+                            <span class="input-group-text" id="toDate">To</span>
                         </div>
-                        <input type="date" class="form-control" aria-describedby="toFrom">
+                        <input name="toDate" value="{{toDate}}" type="date" class="form-control"
+                            aria-describedby="toDate">
                     </div>
                 </div>
-
             </div>
         </form>
         <hr class="my-4 bg-danger">

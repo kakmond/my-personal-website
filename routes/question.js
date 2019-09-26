@@ -28,7 +28,8 @@ router.get('/', function (req, res) {
                 pagination: {
                     page: page,
                     pageCount: Math.ceil(questions.length / QUESTION_PER_PAGE)
-                }
+                },
+                search
             })
         }
     })
