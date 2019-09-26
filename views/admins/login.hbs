@@ -2,6 +2,16 @@
     <h5 class="bg-danger text-white text-center card-header">
         <i class="fas fa-user-cog pr-2"></i> ADMIN LOGIN
     </h5>
+    {{#if error}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>
+            {{error}}
+        </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
     <div class="card-body lead">
         <form method="POST">
             <div class="form-group">
