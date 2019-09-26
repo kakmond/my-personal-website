@@ -12,11 +12,10 @@
         </div>
         {{/each}}
         {{/if}}
-
         <div class="text-center">
-            <h1 class="display-4 ">Create Portfolio <i class="text-danger far fa-newspaper pl-2"></i></h1>
+            <h1 class="display-4 ">Create Portfolio <i class="text-danger fas fa-briefcase pl-2"></i></h1>
             <p class="text-muted">
-                Please feel free to contact me if you need any further information about me.
+                Create new portfolio to showcase your work.
             </p>
         </div>
         <hr class="my-4 bg-danger">
@@ -25,11 +24,11 @@
         <div class="container">
             <div class="form-group row">
                 <label for="inputTitle" class="col-md-2 col-sm-12 col-form-label col-form-label-lg">
-                    Project's name
+                    Project name
                 </label>
                 <div class="col-md-10 col-sm-12">
                     <input type="text" name="title" class="form-control form-control-lg" id="inputTitle"
-                        placeholder="Input title here..." maxlength="50" value="{{title}}">
+                        placeholder="Enter project name here..." maxlength="50" value="{{title}}">
                 </div>
             </div>
             <div class="form-group row">
@@ -49,29 +48,27 @@
                     Caption
                     <br>
                     <small class="text-muted">
-                        Please feel free to contact me if you need any further information
-                        about me.
+                        A caption is text that appears below an project name.
                     </small>
                 </label>
                 <input name="caption" class="form-control form-control-lg" id="inputCaption" rows="2"
-                    placeholder="Write your caption here..." maxlength="75" value="{{caption}}"></input>
+                    placeholder="Write project caption here..." maxlength="75" value="{{caption}}"></input>
             </div>
             <hr class="mt-4">
             <div class="form-group">
                 <label for="inputDescription">
-                    Project's description
+                    Project description
                     <br>
                     <small class="text-muted">
-                        Please feel free to contact me if you need any further information
-                        about me.
+                        A descriptive text which presents information about project.
                     </small>
                 </label>
                 <textarea name="description" class="form-control form-control-lg" id="inputDescription" rows="7"
-                    placeholder="Write your content here..." maxlength="500">{{description}}</textarea>
+                    placeholder="Write project description here..." maxlength="500">{{description}}</textarea>
             </div>
             <div class="input-group input-group-lg">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="fromDate">Project's date</span>
+                    <span class="input-group-text" id="fromDate">Project date</span>
                 </div>
                 <input value="{{date}}" name="date" type="date" class="form-control" aria-describedby="fromDate">
             </div>
