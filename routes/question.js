@@ -11,13 +11,18 @@ const ANSWER_MIN_LENGTH = 5
 const ANSWER_MAX_LENGTH = 75
 
 router.get('/', function (req, res) {
+    const search = req.query.search
     const page = req.query.page || 1
     const beginIndex = (QUESTION_PER_PAGE * page) - QUESTION_PER_PAGE
     const endIndex = beginIndex + QUESTION_PER_PAGE
     db.getAllQuestions(function (error, questions) {
         if (error)
             res.render('errors/error')
-        else
+        else {
+            if (search)
+                questions = questions.filter(function (element) {
+                    return element.question.includes(search)
+                })
             res.render("questions/questions", {
                 questions: questions.slice(beginIndex, endIndex),
                 pagination: {
@@ -25,6 +30,7 @@ router.get('/', function (req, res) {
                     pageCount: Math.ceil(questions.length / QUESTION_PER_PAGE)
                 }
             })
+        }
     })
 })
 
