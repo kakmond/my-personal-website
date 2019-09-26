@@ -25,7 +25,7 @@
         {{#each questions}}
         <div class="accordion shadow bg-white rounded border-bottom">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
+                <div class="card-header">
                     <div class="d-flex align-items-center">
                         <i class="fab fa-3x text-danger fa-quora"></i>
                         <a href="/questions/{{this.id}}">
@@ -33,6 +33,12 @@
                                 {{this.question}}
                             </span>
                         </a>
+                        <div class="ml-auto">
+                            <span class="text-muted">
+                                <i class="far fa-calendar-alt"></i>
+                                {{timestampToDateString this.timestamp}}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="collapse show">

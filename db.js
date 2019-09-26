@@ -6,7 +6,8 @@ db.run(`
 	CREATE TABLE IF NOT EXISTS questions (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		question TEXT,
-		answer TEXT
+        answer TEXT,
+        timestamp INTEGER
 	)
 `)
 
@@ -48,10 +49,10 @@ exports.getQuestionById = function (id, callback) {
 }
 
 exports.createQuestion = function (question, callback) {
-    const query = `INSERT INTO questions(question, answer) VALUES (?, ?)`
+    const query = `INSERT INTO questions(question, timestamp) VALUES (?, ?)`
     const values = [
         question.question,
-        question.answer
+        question.timestamp
     ]
     db.run(query, values, function (error) {
         const id = this.lastID
@@ -82,7 +83,6 @@ exports.updateAnswerById = function (id, updatedAnswer, callback) {
     })
 }
 
-// Blogs
 exports.getAllBlogs = function (callback) {
     const query = `SELECT * FROM blogs ORDER BY id DESC`
     db.all(query, function (error, blogs) {
@@ -149,7 +149,6 @@ exports.updateBlogById = function (id, updatedBlog, callback) {
     })
 }
 
-// Portfolio
 exports.getAllPortfolios = function (callback) {
     const query = `SELECT * FROM portfolios ORDER BY id DESC`
     db.all(query, function (error, portfolios) {

@@ -1,26 +1,24 @@
 {{#if question}}
 <div class="accordion shadow" id="accordionExample">
     <div class="card">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header">
             <div class="d-flex align-items-center">
                 <i class="fab fa-3x text-danger fa-quora"></i>
                 <span class="pl-3 lead text-dark font-weight-bold">
                     {{question.question}}
                 </span>
+                <div class="ml-auto">
+                    <span class="text-muted">
+                        <i class="far fa-calendar-alt"></i>
+                        {{timestampToDateString question.timestamp}}
+                    </span>
+                </div>
             </div>
-            {{#if isLoggedIn}}
-            <div class="text-right pr-2">
-                <a href="/questions/edit/{{question.id}}" class="btn btn-outline-success">
-                    <i class="fas fa-lg fa-wrench"></i>
-                    <span class="lead pl-2">Edit</span>
-                </a>
-            </div>
-            {{/if}}
         </div>
         <div class="card-body">
-            <div class="d-flex bd-highlight text-muted">
-                <i class="p-2 bd-highlight fab fa-3x fa-amilia"></i>
-                <div class="pt-3 flex-grow-1 bd-highlight pl-3 lead">
+            <div class="d-flex text-muted">
+                <i class="p-2 fab fa-3x fa-amilia"></i>
+                <div class="pt-3 flex-grow-1 pl-3 lead">
                     {{#if question.answer}}
                     {{question.answer}}
                     {{else}}
@@ -29,6 +27,14 @@
                     </small>
                     {{/if}}
                 </div>
+                {{#if isLoggedIn}}
+                <div class="align-self-center pr-2">
+                    <a href="/questions/edit/{{question.id}}" class="btn btn-outline-primary">
+                        <i class="fas fa-lg fa-wrench"></i>
+                        <span class="lead pl-2">Edit</span>
+                    </a>
+                </div>
+                {{/if}}
             </div>
         </div>
     </div>

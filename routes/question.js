@@ -51,7 +51,7 @@ router.post('/create/', function (req, res) {
     if (validationErrors.length == 0) {
         const questionObject = {
             question,
-            answer: ""
+            timestamp: new Date().getTime()
         }
         db.createQuestion(questionObject, function (error, id) {
             if (error)
