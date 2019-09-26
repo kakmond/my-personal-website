@@ -21,8 +21,7 @@
         </div>
         <hr class="my-4 bg-danger">
     </div>
-    <form enctype="multipart/form-data" method="POST">
-        <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
+    <form action="/portfolios/create/?_csrf={{csrftoken}}" enctype="multipart/form-data" method="POST">
         <div class="container">
             <div class="form-group row">
                 <label for="inputTitle" class="col-md-2 col-sm-12 col-form-label col-form-label-lg">

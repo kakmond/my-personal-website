@@ -55,6 +55,8 @@ router.post('/create', upload.single('image'), function (req, res) {
         return
     }
 
+    console.log(req.csrfToken())
+
     const validationErrors = []
     const title = req.body.title
     const file = req.file

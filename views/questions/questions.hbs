@@ -6,19 +6,16 @@
                 Please feel free to contact me if you need any further information about me.
             </p>
         </div>
-        <form method="POST">
+        <form>
             <div class="lead">
                 <div class="input-group input-group-lg mb-3">
-                    <input type="text" name="question" class="form-control {{#if validationErrors}}is-invalid{{/if}}"
-                        placeholder="Search..." aria-describedby="button-addon" maxlength="100">
+                    <input type="text" name="search" class="form-control" placeholder="Search..."
+                        aria-describedby="button-addon" maxlength="100">
                     <div class="input-group-append">
                         <button class="btn btn-danger" type="submit" id="button-addon">
                             Search
                             <i class="fas fa-search pl-1 fa-lg"></i>
                         </button>
-                    </div>
-                    <div class="invalid-feedback">
-                        {{validationErrors}}
                     </div>
                 </div>
             </div>
