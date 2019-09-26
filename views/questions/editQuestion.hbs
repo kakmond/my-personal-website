@@ -10,6 +10,7 @@
             </div>
             <div class="pr-2">
                 <form method="POST" action="/questions/delete/{{question.id}}">
+                    <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
                     <button type="submit" class="btn btn-outline-danger">
                         <i class="fas fa-lg fa-trash-alt"></i>
                         <span class="lead pl-2">Delete</span>
@@ -19,6 +20,7 @@
         </div>
         <div class="card-body">
             <form method="POST" action="/questions/edit/{{question.id}}">
+                <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
                 <input type="hidden" name="question" value="{{question.question}}">
                 <div class="d-flex bd-highlight text-muted">
                     <i class="p-2 bd-highlight fab fa-3x fa-amilia"></i>

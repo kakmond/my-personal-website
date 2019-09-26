@@ -8,12 +8,12 @@
         </div>
         <div class="card-body">
             <form method="POST">
+                <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
                 <div class="d-flex bd-highlight text-muted">
                     <i class="fab pt-1 fa-3x text-danger fa-quora"></i>
                     <div class="p-2 flex-grow-1 bd-highlight pl-3">
                         <div class="lead input-group input-group-lg mb-3">
-                            <input
-                                class="form-control form-control-lg {{#if validationErrors}}is-invalid{{/if}}"
+                            <input class="form-control form-control-lg {{#if validationErrors}}is-invalid{{/if}}"
                                 name="question" type="text" value="{{question}}" placeholder="Ask me anything">
                             <div class="invalid-feedback">
                                 {{validationErrors}}

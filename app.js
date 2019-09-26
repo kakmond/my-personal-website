@@ -7,6 +7,9 @@ const expressSession = require('express-session')
 const SQLiteStore = require('connect-sqlite3')(expressSession)
 const Handlebars = require('handlebars');
 const paginate = require('handlebars-paginate');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser')
+const csrfMiddleware = csrf({ cookie: true })
 const indexRouter = require('./routes/index')
 const questionsRouter = require('./routes/question')
 const blogsRouter = require('./routes/blog')
@@ -29,12 +32,13 @@ app.use(expressSession({
     resave: false,
     store: new SQLiteStore()
 }))
-
+app.use(cookieParser());
+app.use(csrfMiddleware);
 app.use(function (req, res, next) {
+    res.locals.csrftoken = req.csrfToken();
     res.locals.isLoggedIn = req.session.isLoggedIn
     next()
 })
-
 app.use("/", indexRouter)
 app.use("/questions", questionsRouter)
 app.use("/blogs", blogsRouter)

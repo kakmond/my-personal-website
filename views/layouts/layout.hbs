@@ -54,6 +54,7 @@
             <a class="nav-item nav-link text-dark" href="/portfolios/create">CREATE PORTFOLIO</a>
             <a class="nav-item nav-link text-dark" href="/blogs/create">CREATE BLOG</a>
             <form action="/logout" method="post">
+              <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
               <button type="submit" class="nav-item nav-link text-dark btn font-weight-bold">LOGOUT</button>
             </form>
           </div>

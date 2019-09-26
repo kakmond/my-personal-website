@@ -14,6 +14,7 @@
     {{/if}}
     <div class="card-body lead">
         <form method="POST">
+            <input type= "hidden" name="_csrf" value="{{ csrftoken }}" />
             <div class="form-group">
                 <label for="inputUsername">Username</label>
                 <div class="input-group mb-3">

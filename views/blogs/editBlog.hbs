@@ -22,6 +22,7 @@
         <hr class="my-4 bg-danger">
     </div>
     <form enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
         <div class="container">
             <div class="form-group row">
                 <label for="inputTitle" class="col-md-1 col-sm-12 col-form-label col-form-label-lg">

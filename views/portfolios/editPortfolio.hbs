@@ -23,6 +23,7 @@
         <hr class="my-4 bg-danger">
     </div>
     <form enctype="multipart/form-data" method="POST">
+        <input type="hidden" name="_csrf" value="{{ csrftoken }}" />
         <div class="container">
             <div class="form-group row">
                 <label for="inputTitle" class="col-md-2 col-sm-12 col-form-label col-form-label-lg">
@@ -83,7 +84,8 @@
                     class="btn btn-outline-danger btn-lg my-4">
                     <i class="fas fa-trash-alt pr-2"></i>Delete
                 </button>
-                <button formaction="/portfolios/edit/{{portfolio.id}}" type="submit" class="btn btn-outline-success btn-lg my-4">
+                <button formaction="/portfolios/edit/{{portfolio.id}}" type="submit"
+                    class="btn btn-outline-success btn-lg my-4">
                     <i class="fas fa-edit pr-2"></i>Update
                 </button>
             </div>
