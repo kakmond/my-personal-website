@@ -33,7 +33,7 @@
         <a class="nav-item nav-link" href="/">HOME</a>
         <a class="nav-item nav-link" href="/portfolios">PORTFOLIO</a>
         <a class="nav-item nav-link" href="/blogs">BLOGPOSTS</a>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="aboutMeDropdown">
           <a class="nav-link dropdown-toggle" href="" id="aboutMeDropdownMenuLink" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             ABOUT ME
@@ -45,7 +45,7 @@
           </div>
         </li>
         {{#if isLoggedIn}}
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="adminDropdown">
           <a class="nav-link dropdown-toggle" href="" id="adminDropdownMenuLink" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             ADMIN
@@ -69,4 +69,18 @@
     {{{body}}}
   </div>
 </body>
+
 </html>
+
+<script>
+  $(document).ready(function () {
+    // get current URL path and assign 'active' class
+    var pathName = window.location.pathname
+    if (pathName == '/about' || pathName == '/contact' || pathName == '/questions')
+      $('#aboutMeDropdown').addClass('show')
+    else if (pathName == '/blogs/create' || pathName == '/portfolios/create')
+      $('#adminDropdown').addClass('show')
+    else
+      $('a[href="' + pathName + '"]').addClass('active')
+  })
+</script>
