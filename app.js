@@ -26,12 +26,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 Handlebars.registerHelper('paginate', paginate);
-app.use(expressSession({
+const sessionOption = {
     secret: "verysecret",
     saveUninitialized: false,
     resave: false,
-    store: new SQLiteStore()
-}))
+    store: new SQLiteStore(),
+}
+app.use(expressSession(sessionOption))
 app.use(cookieParser());
 app.use(csrfMiddleware);
 app.use(function (req, res, next) {
@@ -43,4 +44,4 @@ app.use("/", indexRouter)
 app.use("/questions", questionsRouter)
 app.use("/blogs", blogsRouter)
 app.use("/portfolios", portfoliosRouter)
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
