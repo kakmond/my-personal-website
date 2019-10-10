@@ -10,7 +10,7 @@
                 <footer class="blockquote-footer">
                     {{blog.caption}}
                     <br>
-                    <span>
+                    <span class="text-center">
                         <i class="far fa-calendar-alt"></i>
                         {{timestampToDateString blog.timestamp}}
                     </span>
@@ -18,8 +18,8 @@
             </blockquote>
             {{#if isLoggedIn}}
             <div class="text-center pb-2">
-                <a class="btn btn-outline-primary" href="/blogs/edit/{{blog.id}}">
-                    <i class="fas fa-lg fa-edit"></i>
+                <a class="btn btn-outline-info" href="/blogs/edit/{{blog.id}}">
+                    <i class="fas fa-lg fa-wrench"></i>
                     <span class="pl-2">Edit</span>
                 </a>
             </div>

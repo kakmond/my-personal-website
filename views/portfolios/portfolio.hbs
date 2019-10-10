@@ -14,17 +14,17 @@
                     </small>
                 </blockquote>
                 <hr>
-                <span style="white-space: pre-wrap;" style="font-size: 22px">
+                <p style="white-space: pre-wrap;" style="font-size: 22px">
                     {{portfolio.description}}
-                </span>
+                </p>
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
             <img src="{{portfolio.image}}" class="cover img-fluid">
             {{#if isLoggedIn}}
             <div class="pt-4 text-center">
-                <a class="btn btn-lg btn-outline-primary" href="/portfolios/edit/{{portfolio.id}}">
-                    <i class="fas fa-lg fa-edit"></i>
+                <a class="btn btn-outline-info" href="/portfolios/edit/{{portfolio.id}}">
+                    <i class="fas fa-lg fa-wrench"></i>
                     <span class="pl-2">Edit</span>
                 </a>
             </div>

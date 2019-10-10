@@ -51,7 +51,7 @@
         {{#each portfolios}}
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card shadow h-100">
-                <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                <img class="card-img-top" style="max-height: 250px; object-fit: cover;" src="{{this.image}}">
                 <div class="card-body">
                     <blockquote class="card-text blockquote text-center">
                         <span class="font-weight-bold" style="font-size: 22px">{{this.title}}</span>
@@ -59,7 +59,8 @@
                             <cite>{{this.caption}}</cite>
                         </footer>
                     </blockquote>
-                    <hr>
+                </div>
+                <div class="card-footer">
                     <div class="d-flex align-items-center justify-content-between">
                         <small class="text-muted">
                             <i class="far fa-calendar-alt"></i>
