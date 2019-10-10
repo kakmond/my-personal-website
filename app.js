@@ -44,4 +44,8 @@ app.use("/", indexRouter)
 app.use("/questions", questionsRouter)
 app.use("/blogs", blogsRouter)
 app.use("/portfolios", portfoliosRouter)
+// The 404 Route
+app.get('*', function (req, res) {
+    res.render('errors/404')
+});
 app.listen(process.env.PORT || 3000)
