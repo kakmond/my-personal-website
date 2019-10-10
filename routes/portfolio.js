@@ -44,7 +44,7 @@ router.get('/', function (req, res) {
 
     db.getAllPortfolios(function (error, portfolios) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else {
             if (validationErrors.length == 0) {
                 if (search)
@@ -138,7 +138,7 @@ router.post('/create', upload.single('image'), function (req, res) {
         }
         db.createPortfolio(portfolioObject, function (error, id) {
             if (error)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/portfolios/" + id)
         })
@@ -163,7 +163,7 @@ router.get('/edit/:id', function (req, res) {
 
     db.getPortfolioById(id, function (error, portfolio) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('portfolios/editPortfolio', {
                 portfolio,
@@ -219,7 +219,7 @@ router.post('/edit/:id', upload.single('image'), function (req, res) {
     if (validationErrors.length == 0) {
         db.updatePortfolioById(id, portfolio, function (error, portfolioExisted) {
             if (error || !portfolioExisted)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/portfolios/" + id)
         })
@@ -236,7 +236,7 @@ router.get('/:id', function (req, res) {
 
     db.getPortfolioById(id, function (error, portfolio) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('portfolios/portfolio', {
                 portfolio
@@ -254,7 +254,7 @@ router.post('/delete/:id', function (req, res) {
 
     db.deletePortfolioById(id, function (error, portfolioExisted) {
         if (error || !portfolioExisted)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.redirect('/portfolios/')
     })

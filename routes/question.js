@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
     const endIndex = beginIndex + QUESTION_PER_PAGE
     db.getAllQuestions(function (error, questions) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else {
             if (search)
                 questions = questions.filter(function (element) {
@@ -55,7 +55,7 @@ router.post('/create/', function (req, res) {
         }
         db.createQuestion(questionObject, function (error, id) {
             if (error)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/questions/")
         })
@@ -76,7 +76,7 @@ router.get('/edit/:id', function (req, res) {
     const id = req.params.id
     db.getQuestionById(id, function (error, question) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('questions/editQuestion', {
                 question
@@ -102,7 +102,7 @@ router.post('/edit/:id', function (req, res) {
     if (validationErrors.length == 0) {
         db.updateAnswerById(id, answer, function (error, questionExisted) {
             if (error || !questionExisted)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/questions/" + id)
         })
@@ -130,7 +130,7 @@ router.post('/delete/:id', function (req, res) {
 
     db.deleteQuestionById(id, function (error, questionExisted) {
         if (error || !questionExisted)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.redirect("/questions/")
     })
@@ -140,7 +140,7 @@ router.get('/:id', function (req, res) {
     const id = req.params.id
     db.getQuestionById(id, function (error, question) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('questions/question', {
                 question

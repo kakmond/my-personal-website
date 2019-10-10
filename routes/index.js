@@ -28,7 +28,7 @@ router.post('/login', function (req, res) {
     if (username == USERNAME)
         bcrypt.compare(password, PASSWORD_HASH, function (error, matched) {
             if (error)
-                res.render('errors/error')
+                res.render('errors/500')
             else if (matched) {
                 req.session.isLoggedIn = true
                 res.redirect('/')

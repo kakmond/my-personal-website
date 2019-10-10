@@ -44,7 +44,7 @@ router.get('/', function (req, res) {
 
     db.getAllBlogs(function (error, blogs) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else {
             if (validationErrors.length == 0) {
                 if (search)
@@ -130,7 +130,7 @@ router.post('/create', upload.single('image'), function (req, res) {
         }
         db.createBlog(blogObject, function (error, id) {
             if (error)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/blogs/" + id)
         })
@@ -155,7 +155,7 @@ router.get('/edit/:id', function (req, res) {
 
     db.getBlogById(id, function (error, blog) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('blogs/editBlog', {
                 blog
@@ -202,7 +202,7 @@ router.post('/edit/:id', upload.single('image'), function (req, res) {
     if (validationErrors.length == 0)
         db.updateBlogById(id, blog, function (error, portfolioExisted) {
             if (error || !portfolioExisted)
-                res.render('errors/error')
+                res.render('errors/500')
             else
                 res.redirect("/blogs/" + id)
         })
@@ -218,7 +218,7 @@ router.get('/:id', function (req, res) {
 
     db.getBlogById(id, function (error, blog) {
         if (error)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.render('blogs/blog', {
                 blog
@@ -236,7 +236,7 @@ router.post('/delete/:id', function (req, res) {
 
     db.deleteBlogById(id, function (error, blogExisted) {
         if (error || !blogExisted)
-            res.render('errors/error')
+            res.render('errors/500')
         else
             res.redirect("/blogs/")
     })
