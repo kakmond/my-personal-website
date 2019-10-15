@@ -225,7 +225,7 @@ router.post('/edit/:id', upload.single('image'), function (req, res) {
         })
     }
     else
-        res.render("editPortfolio", {
+        res.render("portfolios/editPortfolio", {
             validationErrors,
             portfolio
         })

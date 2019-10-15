@@ -207,7 +207,7 @@ router.post('/edit/:id', upload.single('image'), function (req, res) {
                 res.redirect("/blogs/" + id)
         })
     else
-        res.render("editBlog", {
+        res.render("blogs/editBlog", {
             validationErrors,
             blog
         })
