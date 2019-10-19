@@ -2,7 +2,7 @@
 <div class="shadow-lg bg-white rounded">
     <div class="row align-items-center">
         <div class="col-md-6 col-sm-12">
-            <img src="{{blog.image}}" class="cover img-fluid border-right">
+            <img src="{{blog.imageUrl}}" alt="blog image" class="cover img-fluid border-right">
         </div>
         <div class="col-md-6 col-sm-12">
             <blockquote style="word-wrap: break-word;" class="container blockquote text-center">
@@ -12,7 +12,7 @@
                     <br>
                     <span class="text-center">
                         <i class="far fa-calendar-alt"></i>
-                        {{timestampToDateString blog.timestamp}}
+                        {{timestampToDateString blog.createdAt}}
                     </span>
                 </footer>
             </blockquote>

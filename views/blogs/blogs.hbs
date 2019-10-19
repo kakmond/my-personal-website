@@ -6,7 +6,6 @@
                 Welcome to my blog page! Here I'll share my life experiences.
             </p>
         </div>
-
         <form>
             <div class="lead">
                 {{#if validationErrors.length}}
@@ -51,13 +50,12 @@
         </form>
         <hr class="my-4 bg-danger">
     </div>
-
     {{#if blogs.length}}
     <div class="row lead">
         {{#each blogs}}
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card h-100 bg-white">
-                <img src="{{image}}" style="max-height: 200px; object-fit: cover;" class="card-img-top">
+                <img src="{{imageUrl}}" alt="blog image" style="max-height: 200px; object-fit: cover;" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
                     <hr>
@@ -70,7 +68,7 @@
                 <div class="card-footer">
                     <small class="text-muted">
                         <i class="far fa-calendar-alt pr-1"></i>
-                        {{timestampToDateString this.timestamp}}
+                        {{timestampToDateString this.createdAt}}
                     </small>
                 </div>
             </div>

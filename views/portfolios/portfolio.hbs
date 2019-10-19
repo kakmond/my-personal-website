@@ -10,7 +10,8 @@
                     </footer>
                     <small class="text-muted">
                         <i class="far fa-calendar-alt"></i>
-                        {{timestampToDateString portfolio.timestamp}}
+                        Published Date:
+                        {{timestampToDateString portfolio.publishedAt}}
                     </small>
                 </blockquote>
                 <hr>
@@ -20,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
-            <img src="{{portfolio.image}}" class="cover img-fluid">
+            <img src="{{portfolio.imageUrl}}" alt="portfolio image" class="cover img-fluid">
             {{#if isLoggedIn}}
             <div class="pt-4 text-center">
                 <a class="btn btn-outline-info" href="/portfolios/edit/{{portfolio.id}}">

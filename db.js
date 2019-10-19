@@ -1,4 +1,4 @@
-const sqlite3 = require('sqlite3')
+const sqlite3 = require("sqlite3")
 
 const db = new sqlite3.Database("database.db")
 
@@ -7,7 +7,7 @@ db.run(`
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		question TEXT,
         answer TEXT,
-        timestamp INTEGER
+        createdAt INTEGER
 	)
 `)
 
@@ -15,10 +15,10 @@ db.run(`
 	CREATE TABLE IF NOT EXISTS blogs (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title TEXT,
-		image TEXT,
+		imageUrl TEXT,
         caption TEXT,
         content TEXT,
-		timestamp INTEGER
+		createdAt INTEGER
 	)
 `)
 
@@ -26,10 +26,10 @@ db.run(`
 	CREATE TABLE IF NOT EXISTS portfolios (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title TEXT,
-		image TEXT,
+		imageUrl TEXT,
         caption TEXT,
         description TEXT,
-		timestamp INTEGER
+		publishedAt INTEGER
 	)
 `)
 
@@ -49,10 +49,10 @@ exports.getQuestionById = function (id, callback) {
 }
 
 exports.createQuestion = function (question, callback) {
-    const query = `INSERT INTO questions(question, timestamp) VALUES (?, ?)`
+    const query = `INSERT INTO questions(question, createdAt) VALUES (?, ?)`
     const values = [
         question.question,
-        question.timestamp
+        question.createdAt
     ]
     db.run(query, values, function (error) {
         const id = this.lastID
@@ -101,15 +101,15 @@ exports.getBlogById = function (id, callback) {
 exports.createBlog = function (blog, callback) {
     const query = `
     INSERT INTO blogs
-        (title, image, caption, content, timestamp) 
+        (title, imageUrl, caption, content, createdAt) 
     VALUES 
         (?, ?, ?, ?, ?)`
     const values = [
         blog.title,
-        blog.image,
+        blog.imageUrl,
         blog.caption,
         blog.content,
-        blog.timestamp
+        blog.createdAt
     ]
     db.run(query, values, function (error) {
         const id = this.lastID
@@ -130,7 +130,7 @@ exports.updateBlogById = function (id, updatedBlog, callback) {
     const query = `
     UPDATE blogs SET
         title = ?,
-        image = ?,
+        imageUrl = ?,
         caption = ?,
         content = ?
     WHERE
@@ -138,7 +138,7 @@ exports.updateBlogById = function (id, updatedBlog, callback) {
     `
     const values = [
         updatedBlog.title,
-        updatedBlog.image,
+        updatedBlog.imageUrl,
         updatedBlog.caption,
         updatedBlog.content,
         id
@@ -167,15 +167,15 @@ exports.getPortfolioById = function (id, callback) {
 exports.createPortfolio = function (blog, callback) {
     const query = `
     INSERT INTO portfolios
-        (title, image, caption, description, timestamp) 
+        (title, imageUrl, caption, description, publishedAt) 
     VALUES 
         (?, ?, ?, ?, ?)`
     const values = [
         blog.title,
-        blog.image,
+        blog.imageUrl,
         blog.caption,
         blog.description,
-        blog.timestamp
+        blog.publishedAt
     ]
     db.run(query, values, function (error) {
         const id = this.lastID
@@ -196,19 +196,19 @@ exports.updatePortfolioById = function (id, updatedPortfolio, callback) {
     const query = `
     UPDATE portfolios SET
         title = ?,
-        image = ?,
+        imageUrl = ?,
         caption = ?,
         description = ?,
-        timestamp = ?
+        publishedAt = ?
     WHERE
         id = ?
     `
     const values = [
         updatedPortfolio.title,
-        updatedPortfolio.image,
+        updatedPortfolio.imageUrl,
         updatedPortfolio.caption,
         updatedPortfolio.description,
-        updatedPortfolio.timestamp,
+        updatedPortfolio.publishedAt,
         id
     ]
     db.run(query, values, function (error) {

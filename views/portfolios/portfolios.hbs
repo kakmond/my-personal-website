@@ -51,7 +51,7 @@
         {{#each portfolios}}
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card shadow h-100">
-                <img class="card-img-top" style="max-height: 250px; object-fit: cover;" src="{{this.image}}">
+                <img class="card-img-top" alt="portfolio image" style="max-height: 250px; object-fit: cover;" src="{{this.imageUrl}}">
                 <div class="card-body">
                     <blockquote class="card-text blockquote text-center">
                         <span class="font-weight-bold" style="font-size: 22px">{{this.title}}</span>
@@ -64,7 +64,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <small class="text-muted">
                             <i class="far fa-calendar-alt"></i>
-                            {{timestampToDateString this.timestamp}}
+                            {{timestampToDateString this.publishedAt}}
                         </small>
                         <a class="btn btn-outline-danger" href="/portfolios/{{this.id}}">
                             <i class="fas fa-code"></i>
